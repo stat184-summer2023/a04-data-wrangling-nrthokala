@@ -33,9 +33,9 @@ data("HELPmiss", package = "mosaicData")
 
 ## Task 1: Data Description
 
-The HELP study was a clinical trial for adult patients recruited from a detoxification unit. Patients with no primary care physician were randomized to receive a multidisciplinary assessment and a brief motivational intervention or usual care, with the goal of linking them to primary medical care.
+The HELP study was a clinical trial for adult patients recruited from a detoxification unit. Patients with no primary care physician were randomly selected to receive a multidisciplinary assessment and a brief motivational intervention, with the goal of linking them to primary medical care.
 
-Subjects were interviewed at baseline during their detoxification stay and follow-up interviews were undertaken every 6 months for 2 years. A variety of continuous, count, discrete, and survival time predictors and outcomes were collected at each of these five occasions.
+Subjects were interviewed at baseline during their detoxification stay and follow-up interviews were undertaken every 6 months for a durtation of 2 years. A variety of continuous, count, discrete, and survival time predictors and outcomes were collected at each of these five occasions.
 
 This dataset is a superset of the HELPrct data with 17 subjects with partially observed data on some of the baseline variables. This is a subset of the HELPfull data which includes 5 timepoints and many additional variables.
 
