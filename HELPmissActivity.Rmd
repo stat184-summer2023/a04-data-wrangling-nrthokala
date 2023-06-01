@@ -1,6 +1,6 @@
 ---
 title: "HELPmiss (Data Verbs) Activity"
-author: "YOUR NAME HERE"
+author: "Neeraj Thokala"
 output: html_notebook
 ---
 
@@ -33,11 +33,11 @@ data("HELPmiss", package = "mosaicData")
 
 ## Task 1: Data Description
 
-*Write several sentences (or a bullet list) describing the HELP Study and the resulting `HELPmiss` data.  Your description should investigate basic data provenance (e.g., Who, What, When, Where, Why, How), explain the setting for the data, specify what each case represents in the data, and remark on inclusion/exclusion criteria.* 
+The HELP study was a clinical trial for adult inpatients recruited from a detoxification unit. Patients with no primary care physician were randomized to receive a multidisciplinary assessment and a brief motivational intervention or usual care, with the goal of linking them to primary medical care.
 
+Subjects were interviewed at baseline during their detoxification stay and follow-up interviews were undertaken every 6 months for 2 years. A variety of continuous, count, discrete, and survival time predictors and outcomes were collected at each of these five occasions.
 
-- investigate by searching R help documentation
-- there's a research paper cited where additional detail is provided
+This dataset is a superset of the HELPrct data with 17 subjects with partially observed data on some of the baseline variables. This is a subset of the HELPfull data which includes 5 timepoints and many additional variables.
 
 
 
@@ -48,14 +48,16 @@ data("HELPmiss", package = "mosaicData")
 1. number of people (cases) in `HELPmiss` study
 
 ```{r}
-#Your code here 
+HELPrct %>%
+  summarise( total_people = n()) 
 
 ```
 
 2. total number of times in the past 6 months entered a detox program (measured at baseline) for all the people in `HELPmiss`. 
 
 ```{r}
-#Your code here 
+HELPrct %>%
+  summarise( total_people = n(),total_detox= sum(e2b,na.rm=TRUE)) 
 
 ```
 
@@ -64,7 +66,8 @@ data("HELPmiss", package = "mosaicData")
 
 
 ```{r}
-#Your code here 
+HELPrct %>%
+  summarise( use_mean = mean(daysanysub,na.rm=TRUE) )
 
 ```
 
@@ -83,32 +86,41 @@ data("HELPmiss", package = "mosaicData")
 
 ### males versus females
 ```{r}
-#Your code here
+HELPrct %>%
+  group_by(female)%>%
+  summarise( total_people = n(),total_detox= sum(e2b,na.rm=TRUE),use_mean = mean(daysanysub,na.rm=TRUE) ) 
 
 ```
 
 ### homeless or not
 ```{r}
-#Your code here
+HELPrct %>%
+  group_by(homeless)%>%
+  summarise( total_people = n(),total_detox= sum(e2b,na.rm=TRUE),use_mean = mean(daysanysub,na.rm=TRUE) )
 
 ```
 
 
 ### substance
 ```{r}
-#Your code here
+HELPrct %>%
+  group_by(substance)%>%
+  summarise( total_people = n(),total_detox= sum(e2b,na.rm=TRUE),use_mean = mean(daysanysub,na.rm=TRUE) ) 
 
 ```
 
 ### homeless versus housed broken down by sex
 ```{r}
-#Your code here
-
+HELPrct %>%
+  group_by(female,homeless)%>%
+  summarise( total_people = n(),total_detox= sum(e2b,na.rm=TRUE),use_mean = mean(daysanysub,na.rm=TRUE) ) 
 ```
 
 ### homeless versus housed broken down by substance
 ```{r}
-#Your code here
+HELPrct %>%
+  group_by(homeless,substance)%>%
+  summarise( total_people = n(),total_detox= sum(e2b,na.rm=TRUE),use_mean = mean(daysanysub,na.rm=TRUE) ) 
 
 ```
 
@@ -122,7 +134,7 @@ data("HELPmiss", package = "mosaicData")
 
 
 ```{r}
-# Your Code here.
+gf_point(daysanysub~mcs, color=~racegrp,data=HELPrct)
 
 ```
 
