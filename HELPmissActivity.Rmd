@@ -13,7 +13,10 @@ rm(list = ls())     # clean up your R environment
 # load packages
 library(tidyverse)  # includes lots of data verbs like `group_by()` and `summarise()`
 library(mosaicData) # includes the `HELPmiss` data set 
-
+install.packages("magrittr") # package installations are only needed the first time you use it
+install.packages("dplyr")    # alternative installation of the %>%
+library(magrittr) # needs to be run every time you start R and want to use %>%
+library(dplyr)    # alternatively, this also loads %>%
 
 # Load the `HELPmiss` data set into our RStudio environment
 data("HELPmiss", package = "mosaicData")
