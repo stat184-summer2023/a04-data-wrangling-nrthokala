@@ -69,6 +69,7 @@ HELPrct %>%
 
 
 ```{r}
+library(magrittr)
 HELPrct %>%
   summarise( use_mean = mean(daysanysub,na.rm=TRUE) )
 
